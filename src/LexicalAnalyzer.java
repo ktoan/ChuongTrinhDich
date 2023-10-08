@@ -1,7 +1,3 @@
-import models.Token;
-import services.IAnalyzeServices;
-import services.impl.AnalyzeServices;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -11,17 +7,14 @@ import java.util.List;
  * @birthday 2002/09/02
  */
 public class LexicalAnalyzer {
-    private static final IAnalyzeServices analyzeServices = new AnalyzeServices();
+    private static final ILexicalAnalyzeServices analyzeServices = new LexicalAnalyzeServices();
 
-    public static void main(String[] args) {
-        String filePath = "assets\\input.c";
-        try {
-            List<Token> tokens = analyzeServices.analyzeFile(filePath);
-            for (Token token : tokens) {
-                System.out.println(token);
-            }
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
+
+    public static void main(String[] args) throws IOException {
+        String assetFile = "assets\\input.c";
+        List<Token> tokens = analyzeServices.analyzeFile(assetFile);
+        for (Token token : tokens) {
+            System.out.println(token);
         }
     }
 }
